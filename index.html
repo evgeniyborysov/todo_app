@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./images/favicon-32x32.png"
+        />
+        <link rel="stylesheet" href="reset.css" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Frontend Mentor | Todo app</title>
+    </head>
+    <body class="page">
+        <header class="header">
+            <div class="container">
+                <div class="header__inner">
+                    <h1 class="header__title">TODO</h1>
+                    <button class="header__button theme-btn"></button>
+                </div>
+                <form class="form">
+                    <label>
+                        <input
+                            class="todo-input"
+                            type="text"
+                            placeholder="Create a new todo..."
+                        />
+                    </label>
+                </form>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="inner">
+                    <ul class="todo-list">
+                        <li class="todo-item">
+                            <label class="control">
+                                <input class="checkbox" type="checkbox" />
+                                <div class="custom-checkbox"></div>
+
+                                <div class="text">New TODO</div>
+                            </label>
+                            <button class="btn-delete"></button>
+                        </li>
+
+                        <li class="todo-item">
+                            <label class="control">
+                                <input class="checkbox" type="checkbox" />
+                                <div class="custom-checkbox"></div>
+                                <div class="text">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Dolore, alias? Lorem ipsum
+                                    dolor sit amet consectetur adipisicing elit.
+                                    Dolore, alias? Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Dolore, alias?
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Dolore, alias?
+                                </div>
+                            </label>
+                            <button class="btn-delete"></button>
+                        </li>
+                    </ul>
+                    <div class="todo-filter">
+                        <div class="counter">items left</div>
+                        <div class="2">All Active Completed</div>
+                        <div class="3">Clear Completed</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            Challenge by
+            <a
+                href="https://www.frontendmentor.io?ref=challenge"
+                target="_blank"
+                >Frontend Mentor</a
+            >. Coded by <a href="#">Your Name Here</a>.
+        </footer>
+        <script src="app.js"></script>
+    </body>
+</html>
