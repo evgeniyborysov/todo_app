@@ -14,3 +14,6 @@
 # Avoid your project being littered with annoying .DS_Store files!
 .DS_Store
 .prettierignore
+todo-app-main\design
+todo-app-main\README-template.md
+todo-app-main\style-guide.md

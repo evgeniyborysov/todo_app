@@ -5,10 +5,9 @@ const form = document.querySelector(".form");
 const todoList = document.querySelector(".todo-list");
 const todoCounter = document.querySelector(".counter");
 const checkbox = document.querySelector(".checkbox");
+const todos = [];
 
 let log = console.log;
-
-log(checkbox);
 
 function addTODO() {
     // event.preventDefault();
@@ -23,7 +22,12 @@ function addTODO() {
     <button class="btn-delete"></button>`;
 
     todoList.appendChild(newItem);
+    todos.push({ value: todoInput.value, cheked: false });
+    todoCounter.innerHTML = `${todos.length} items left`;
+
     todoInput.value = "";
+
+    log(todos);
 }
 
 form.addEventListener("submit", (event) => {
