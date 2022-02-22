@@ -22,7 +22,7 @@ function addTODO() {
     <button class="btn-delete"></button>`;
 
     todoList.appendChild(newItem);
-    todos.push({ value: todoInput.value, cheked: false });
+
     todoCounter.innerHTML = `${todos.length} items left`;
 
     todoInput.value = "";
@@ -32,10 +32,31 @@ function addTODO() {
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
+    todos.push({ value: todoInput.value, cheked: false });
     addTODO();
 });
 
-themeBtn.addEventListener("click", () => {
-    mainPage.classList.toggle("dark");
-    // console.log("ok");
-});
+// themeBtn.addEventListener("click", () => {
+//     mainPage.classList.toggle("dark");
+//     // console.log("ok");
+// });
+
+themeBtn.addEventListener("click", switchThemeColor);
+
+function switchThemeColor() {
+    if (!mainPage.classList.contains("dark")) {
+        mainPage.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+        console.log("1");
+    } else {
+        mainPage.classList.remove("dark");
+        localStorage.removeItem("theme");
+        console.log("2");
+    }
+}
+
+window.onload = function () {
+    if (localStorage.getItem("theme") === "dark") {
+        mainPage.classList.add("dark");
+    }
+};
