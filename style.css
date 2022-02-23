@@ -2,6 +2,7 @@
 
 :root {
     --bg-image: url("images/bg-desktop-light.jpg");
+    --bg-image-mobile: url("images/bg-mobile-light.jpg");
     --main-bg-color: hsl(236, 33%, 92%);
     --todo-bg-color: hsl(0, 0%, 98%);
     --text-color: hsl(235, 19%, 35%);
@@ -11,6 +12,7 @@
 
 .dark {
     --bg-image: url("images/bg-desktop-dark.jpg");
+    --bg-image-mobile: url("images/bg-mobile-dark.jpg");
     --main-bg-color: hsl(235, 21%, 11%);
     --todo-bg-color: hsl(235, 24%, 19%);
     --text-color: hsl(233, 11%, 84%);
@@ -35,7 +37,7 @@ main {
     max-width: 560px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 30px;
 }
 
 .header {
@@ -51,7 +53,7 @@ main {
     justify-content: space-between;
     align-items: center;
     padding-top: 75px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 .header__title {
@@ -78,7 +80,7 @@ main {
 }
 
 .inner {
-    margin-top: -50px;
+    margin-top: -35px;
 }
 
 .form {
@@ -211,4 +213,19 @@ main {
 .footer {
     text-align: center;
     background-color: var(--main-bg-color);
+}
+
+@media (max-width: 544px) {
+    .header {
+        background-image: var(--bg-image-mobile);
+    }
+    .todo-input {
+        font-size: 14px;
+    }
+    .todo-filter {
+        font-size: 13px;
+    }
+    .text {
+        font-size: 13px;
+    }
 }
