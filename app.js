@@ -6,8 +6,11 @@ const todoList = document.querySelector(".todo-list");
 const todoCounter = document.querySelector(".counter");
 const checkbox = document.querySelector(".checkbox");
 const todos = [];
+const todoItem = document.querySelectorAll(".todo-item");
 
 let log = console.log;
+log(todoList);
+todoItem.forEach((element) => console.log(element.children));
 
 function addTODO() {
     // event.preventDefault();
@@ -23,12 +26,18 @@ function addTODO() {
 
     todoList.appendChild(newItem);
 
-    todoCounter.innerHTML = `${todos.length} items left`;
+    // todoCounter.innerHTML = `${todoList.length} items left`;
 
     todoInput.value = "";
 
     log(todos);
 }
+
+todoList.addEventListener("click", (event) => {
+    if (event.target.classList.contains("btn-delete")) {
+        event.target.parentElement.remove();
+    }
+});
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -36,22 +45,15 @@ form.addEventListener("submit", (event) => {
     addTODO();
 });
 
-// themeBtn.addEventListener("click", () => {
-//     mainPage.classList.toggle("dark");
-//     // console.log("ok");
-// });
-
 themeBtn.addEventListener("click", switchThemeColor);
 
 function switchThemeColor() {
     if (!mainPage.classList.contains("dark")) {
         mainPage.classList.add("dark");
         localStorage.setItem("theme", "dark");
-        console.log("1");
     } else {
         mainPage.classList.remove("dark");
         localStorage.removeItem("theme");
-        console.log("2");
     }
 }
 
