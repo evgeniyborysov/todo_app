@@ -223,6 +223,19 @@ main {
     .todo-filter {
         font-size: 13px;
     }
+    .filter {
+        display: flex;
+        /* justify-content: space-between;
+        align-items: center; */
+        text-align: center;
+        padding: 10px;
+        font-size: 16px;
+        color: var(--text-color);
+        background-color: var(--todo-bg-color);
+        border-radius: 5px;
+        font-size: 13px;
+        margin-top: 15px;
+    }
     .text {
         font-size: 13px;
     }

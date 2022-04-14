@@ -62,3 +62,16 @@ window.onload = function () {
         mainPage.classList.add("dark");
     }
 };
+
+window.addEventListener("resize", (e) => {
+    if (e.target.innerWidth < 544) {
+        document
+            .querySelector(".todo-filter")
+            .after(document.querySelector(".filter"));
+    } else {
+        document
+            .querySelector(".counter")
+            .after(document.querySelector(".filter"));
+    }
+    // log(e.target.innerWidth);
+});
