@@ -208,6 +208,22 @@ main {
     border-bottom-left-radius: 5px;
 }
 
+.filter {
+    text-align: center;
+}
+
+.filter-inner {
+    flex: 1 0 auto;
+    text-align: center;
+}
+
+.clear {
+    color: var(--text-color);
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
 .footer {
     text-align: center;
     background-color: var(--main-bg-color);
@@ -223,8 +239,8 @@ main {
     .todo-filter {
         font-size: 13px;
     }
-    .filter {
-        display: flex;
+    .filter-inner {
+        /* display: flex; */
         /* justify-content: space-between;
         align-items: center; */
         text-align: center;

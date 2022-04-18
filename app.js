@@ -8,9 +8,11 @@ const checkbox = document.querySelector(".checkbox");
 const todos = [];
 const todoItem = document.querySelectorAll(".todo-item");
 
+const clearBtn = document.querySelector(".clear");
+
 let log = console.log;
-log(todoList);
-todoItem.forEach((element) => console.log(element.children));
+
+// todoItem.forEach((element) => console.log(element.children));
 
 function addTODO() {
     // event.preventDefault();
@@ -18,7 +20,7 @@ function addTODO() {
     newItem.classList.add("todo-item");
     newItem.innerHTML = `
     <label class="control">
-        <input class="checkbox" type="checkbox" />
+        <input class="checkbox" type="checkbox"/>
         <div class="custom-checkbox"></div>
         <div class="text">${todoInput.value}</div>
     </label>
@@ -30,7 +32,7 @@ function addTODO() {
 
     todoInput.value = "";
 
-    log(todos);
+    // log(todos);
 }
 
 todoList.addEventListener("click", (event) => {
@@ -39,9 +41,17 @@ todoList.addEventListener("click", (event) => {
     }
 });
 
+clearBtn.addEventListener("click", () => {
+    const itemsLeft = document.querySelectorAll(".control input:checked");
+    log(itemsLeft);
+    itemsLeft.forEach((element) => {
+        element.closest("li").remove();
+    });
+});
+
 form.addEventListener("submit", (event) => {
     event.preventDefault();
-    todos.push({ value: todoInput.value, cheked: false });
+    todos.push({ value: todoInput.value, checked: false });
     addTODO();
 });
 
@@ -64,14 +74,14 @@ window.onload = function () {
 };
 
 window.addEventListener("resize", (e) => {
-    if (e.target.innerWidth < 544) {
+    if (e.target.innerWidth <= 544) {
         document
             .querySelector(".todo-filter")
-            .after(document.querySelector(".filter"));
+            .after(document.querySelector(".filter-inner"));
     } else {
         document
             .querySelector(".counter")
-            .after(document.querySelector(".filter"));
+            .after(document.querySelector(".filter-inner"));
     }
     // log(e.target.innerWidth);
 });
