@@ -67,24 +67,18 @@ function switchThemeColor() {
     }
 }
 
-window.onload = function () {
-    if (localStorage.getItem("theme") === "dark") {
-        mainPage.classList.add("dark");
-    }
-};
-
-window.onload = function () {
-    log(window.innerWidth);
-    if (window.innerWidth <= 544) {
-        document
-            .querySelector(".todo-filter")
-            .after(document.querySelector(".filter-inner"));
-    } else {
-        document
-            .querySelector(".counter")
-            .after(document.querySelector(".filter-inner"));
-    }
-};
+// window.onload = function () {
+//     log(window.innerWidth);
+//     if (window.innerWidth <= 544) {
+//         document
+//             .querySelector(".todo-filter")
+//             .after(document.querySelector(".filter-inner"));
+//     } else {
+//         document
+//             .querySelector(".counter")
+//             .after(document.querySelector(".filter-inner"));
+//     }
+// };
 
 window.addEventListener("resize", (event) => {
     if (event.target.innerWidth <= 544) {
@@ -98,3 +92,19 @@ window.addEventListener("resize", (event) => {
     }
     // log(e.target.innerWidth);
 });
+
+window.onload = function () {
+    if (localStorage.getItem("theme") === "dark") {
+        mainPage.classList.add("dark");
+        log(1);
+    }
+    if (window.innerWidth <= 544) {
+        document
+            .querySelector(".todo-filter")
+            .after(document.querySelector(".filter-inner"));
+    } else {
+        document
+            .querySelector(".counter")
+            .after(document.querySelector(".filter-inner"));
+    }
+};
