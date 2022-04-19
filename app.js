@@ -73,8 +73,21 @@ window.onload = function () {
     }
 };
 
-window.addEventListener("resize", (e) => {
-    if (e.target.innerWidth <= 544) {
+window.onload = function () {
+    log(window.innerWidth);
+    if (window.innerWidth <= 544) {
+        document
+            .querySelector(".todo-filter")
+            .after(document.querySelector(".filter-inner"));
+    } else {
+        document
+            .querySelector(".counter")
+            .after(document.querySelector(".filter-inner"));
+    }
+};
+
+window.addEventListener("resize", (event) => {
+    if (event.target.innerWidth <= 544) {
         document
             .querySelector(".todo-filter")
             .after(document.querySelector(".filter-inner"));
