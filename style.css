@@ -110,6 +110,7 @@ main {
     padding-left: 50px;
     border: none;
     background-color: var(--todo-bg-color);
+    color: var(--text-color);
 }
 
 .todo-list {
@@ -156,11 +157,7 @@ main {
 .control .checkbox:checked ~ .custom-checkbox {
     background-image: url("images/icon-check.svg");
     background-image: url("images/icon-check.svg"),
-        linear-gradient(
-            104deg,
-            rgba(34, 193, 195, 1) 0%,
-            rgba(253, 187, 45, 1) 100%
-        );
+        linear-gradient(104deg, hsl(192, 100%, 67%) 0%, hsl(280, 87%, 65%) 100%);
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -173,6 +170,16 @@ main {
 .checkbox {
     display: none;
 }
+
+/* .control:hover .custom-checkbox {
+    border-image: linear-gradient(
+        104deg,
+        hsl(192, 100%, 67%) 0%,
+        hsl(280, 87%, 65%) 100%
+    );
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+} */
 
 .text {
     font-size: 16px;
@@ -227,6 +234,14 @@ main {
 .footer {
     text-align: center;
     background-color: var(--main-bg-color);
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
 }
 
 @media (max-width: 544px) {
