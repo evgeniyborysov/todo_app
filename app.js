@@ -48,24 +48,24 @@ function itemsLeft() {
 }
 
 function drawTODOfromLS() {
-    let a = JSON.parse(localStorage.getItem("TODOS"));
-    log(a[0].value);
+    const todos = JSON.parse(localStorage.getItem("TODOS"));
+    if (todos.length > 0) {
+        for (let i = 0; i < todos.length; i++) {
+            let newItem = document.createElement("li");
+            newItem.classList.add("todo-item");
+            newItem.innerHTML = `
+            <label class="control">
+                <input class="checkbox" type="checkbox" checked:${todos[i].checked}/>
+                <div class="custom-checkbox"></div>
+                <div class="text">${todos[i].value}</div>
+            </label>
+            <button class="btn-delete"></button>`;
 
-    for (let i = 0; i < a.length; i++) {
-        let newItem = document.createElement("li");
-        newItem.classList.add("todo-item");
-        newItem.innerHTML = `
-        <label class="control">
-            <input class="checkbox" type="checkbox" checked:${a[i].checked}/>
-            <div class="custom-checkbox"></div>
-            <div class="text">${a[i].value}</div>
-        </label>
-        <button class="btn-delete"></button>`;
-
-        todoList.appendChild(newItem);
+            todoList.appendChild(newItem);
+        }
+        itemsLeft();
+        showFilterBlock();
     }
-    itemsLeft();
-    showFilterBlock();
 }
 
 drawTODOfromLS();
