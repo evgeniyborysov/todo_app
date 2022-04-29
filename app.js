@@ -7,21 +7,21 @@ const todoCounter = document.querySelector(".counter");
 const checkbox = document.querySelector(".checkbox");
 const todoItem = document.querySelectorAll(".todo-item");
 const clearBtn = document.querySelector(".clear");
+const filterBlock = document.querySelector(".filter-container");
 
 const todos = [];
 
 let log = console.log;
-// log(document.querySelectorAll(".control input"));
+log(todos);
 
 function showFilterBlock() {
     const items = document.querySelectorAll(".control input");
-    log(items.length);
     if (items.length === 0) {
-        document.querySelector(".filter-container").classList.remove("show");
-        document.querySelector(".filter-container").classList.add("hide");
+        filterBlock.classList.remove("show");
+        filterBlock.classList.add("hide");
     } else {
-        document.querySelector(".filter-container").classList.remove("hide");
-        document.querySelector(".filter-container").classList.add("show");
+        filterBlock.classList.remove("hide");
+        filterBlock.classList.add("show");
     }
 }
 
@@ -47,6 +47,29 @@ function itemsLeft() {
     todoCounter.innerHTML = `${count} items left`;
 }
 
+function drawTODOfromLS() {
+    let a = JSON.parse(localStorage.getItem("TODOS"));
+    log(a[0].value);
+
+    for (let i = 0; i < a.length; i++) {
+        let newItem = document.createElement("li");
+        newItem.classList.add("todo-item");
+        newItem.innerHTML = `
+        <label class="control">
+            <input class="checkbox" type="checkbox" checked:${a[i].checked}/>
+            <div class="custom-checkbox"></div>
+            <div class="text">${a[i].value}</div>
+        </label>
+        <button class="btn-delete"></button>`;
+
+        todoList.appendChild(newItem);
+    }
+    itemsLeft();
+    showFilterBlock();
+}
+
+drawTODOfromLS();
+
 function addTODO() {
     // event.preventDefault();
     let newItem = document.createElement("li");
@@ -61,6 +84,11 @@ function addTODO() {
 
     todoList.appendChild(newItem);
     todoInput.value = "";
+}
+
+function addTODOtoLS(array) {
+    localStorage.setItem("TODOS", JSON.stringify(array));
+    // log(JSON.parse(localStorage.getItem("TODOS")));
 }
 
 todoList.addEventListener("click", (event) => {
@@ -84,6 +112,7 @@ clearBtn.addEventListener("click", () => {
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     todos.push({ value: todoInput.value, checked: false });
+    addTODOtoLS(todos);
     addTODO();
     itemsLeft();
     showFilterBlock();
