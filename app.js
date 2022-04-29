@@ -49,7 +49,8 @@ function itemsLeft() {
 
 function drawTODOfromLS() {
     const todos = JSON.parse(localStorage.getItem("TODOS"));
-    if (todos.length > 0) {
+    log(todos);
+    if (todos != null) {
         for (let i = 0; i < todos.length; i++) {
             let newItem = document.createElement("li");
             newItem.classList.add("todo-item");
