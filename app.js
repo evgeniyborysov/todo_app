@@ -8,24 +8,21 @@ const checkbox = document.querySelector(".checkbox");
 const todoItem = document.querySelectorAll(".todo-item");
 const clearBtn = document.querySelector(".clear");
 const filterBlock = document.querySelector(".filter-container");
+const radioBox = document.querySelector(".filter-inner");
 
-const todos = [];
+let todos = [];
 
 let log = console.log;
-log(todos);
 
-function showFilterBlock() {
-    const items = document.querySelectorAll(".control input");
-    if (items.length === 0) {
-        filterBlock.classList.remove("show");
-        filterBlock.classList.add("hide");
-    } else {
-        filterBlock.classList.remove("hide");
-        filterBlock.classList.add("show");
+function updateTodos(text) {
+    for (let i = 0; i < todos.length; i++) {
+        if (todos[i].input === text) {
+            todos[i].status = !todos[i].status;
+        }
     }
-}
 
-showFilterBlock();
+    addTODOtoLS(todos);
+}
 
 function filter() {
     const elem = document.querySelectorAll(".control input");
@@ -48,17 +45,18 @@ function itemsLeft() {
 }
 
 function drawTODOfromLS() {
-    const todos = JSON.parse(localStorage.getItem("TODOS"));
-    log(todos);
     if (todos != null) {
+        todos = JSON.parse(localStorage.getItem("TODOS"));
         for (let i = 0; i < todos.length; i++) {
             let newItem = document.createElement("li");
             newItem.classList.add("todo-item");
             newItem.innerHTML = `
             <label class="control">
-                <input class="checkbox" type="checkbox" checked:${todos[i].checked}/>
+                <input class="checkbox" type="checkbox" ${
+                    todos[i].status ? "checked" : ""
+                }/>
                 <div class="custom-checkbox"></div>
-                <div class="text">${todos[i].value}</div>
+                <div class="text">${todos[i].input}</div>
             </label>
             <button class="btn-delete"></button>`;
 
@@ -69,9 +67,7 @@ function drawTODOfromLS() {
     }
 }
 
-drawTODOfromLS();
-
-function addTODO() {
+function addTODO(value) {
     // event.preventDefault();
     let newItem = document.createElement("li");
     newItem.classList.add("todo-item");
@@ -79,12 +75,19 @@ function addTODO() {
     <label class="control">
         <input class="checkbox" type="checkbox"/>
         <div class="custom-checkbox"></div>
-        <div class="text">${todoInput.value}</div>
+        <div class="text">${value}</div>
     </label>
     <button class="btn-delete"></button>`;
 
     todoList.appendChild(newItem);
+    log(todos);
+    todos.push({ input: value, status: false });
     todoInput.value = "";
+
+    addTODOtoLS(todos);
+
+    itemsLeft();
+    showFilterBlock();
 }
 
 function addTODOtoLS(array) {
@@ -92,32 +95,55 @@ function addTODOtoLS(array) {
     // log(JSON.parse(localStorage.getItem("TODOS")));
 }
 
+// todoList.addEventListener("click", (event) => {
+//     if (event.target.classList.contains("control")) {
+//         const text = event.path[0].outerText;
+//         log(text);
+//         updateTodos(text);
+//     }
+// });
+
+radioBox.addEventListener("click", (event) => {
+    log(event.target.id);
+});
+
 todoList.addEventListener("click", (event) => {
+    if (event.target.classList.contains("control")) {
+        const text = event.path[0].outerText;
+        log(text);
+        updateTodos(text);
+    }
+
     if (event.target.classList.contains("btn-delete")) {
-        event.target.parentElement.remove();
+        removeItem(event.target.parentElement);
     }
     itemsLeft();
-    showFilterBlock();
+    // showFilterBlock();
 });
+
+function removeItem(element) {
+    element.remove();
+    itemsLeft();
+    showFilterBlock();
+}
 
 clearBtn.addEventListener("click", () => {
     const itemsDone = document.querySelectorAll(".control input:checked");
     log(itemsDone);
     itemsDone.forEach((element) => {
-        element.closest("li").remove();
+        removeItem(element.closest("li"));
     });
-    itemsLeft();
-    showFilterBlock();
+    // itemsLeft();
+    // showFilterBlock();
 });
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
-    todos.push({ value: todoInput.value, checked: false });
-    addTODOtoLS(todos);
-    addTODO();
-    itemsLeft();
-    showFilterBlock();
-    // log(todos);
+    // todos.push({ value: todoInput.value, checked: false });
+    // addTODOtoLS(todos);
+    addTODO(todoInput.value);
+    // itemsLeft();
+    // showFilterBlock();
 });
 
 themeBtn.addEventListener("click", switchThemeColor);
@@ -131,19 +157,6 @@ function switchThemeColor() {
         localStorage.removeItem("theme");
     }
 }
-
-// window.onload = function () {
-//     log(window.innerWidth);
-//     if (window.innerWidth <= 544) {
-//         document
-//             .querySelector(".todo-filter")
-//             .after(document.querySelector(".filter-inner"));
-//     } else {
-//         document
-//             .querySelector(".counter")
-//             .after(document.querySelector(".filter-inner"));
-//     }
-// };
 
 window.addEventListener("resize", (event) => {
     mobileView(event.target.innerWidth);
@@ -167,4 +180,17 @@ function mobileView(width) {
     }
 }
 
+function showFilterBlock() {
+    const items = document.querySelectorAll(".control input");
+    if (items.length === 0) {
+        filterBlock.classList.remove("show");
+        filterBlock.classList.add("hide");
+    } else {
+        filterBlock.classList.remove("hide");
+        filterBlock.classList.add("show");
+    }
+}
+
 mobileView(window.innerWidth);
+showFilterBlock();
+drawTODOfromLS();
