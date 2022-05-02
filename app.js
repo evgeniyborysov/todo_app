@@ -45,8 +45,8 @@ function itemsLeft() {
 }
 
 function drawTODOfromLS() {
+    todos = JSON.parse(localStorage.getItem("TODOS"));
     if (todos != null) {
-        todos = JSON.parse(localStorage.getItem("TODOS"));
         for (let i = 0; i < todos.length; i++) {
             let newItem = document.createElement("li");
             newItem.classList.add("todo-item");
@@ -64,6 +64,8 @@ function drawTODOfromLS() {
         }
         itemsLeft();
         showFilterBlock();
+    } else {
+        todos = [];
     }
 }
 
