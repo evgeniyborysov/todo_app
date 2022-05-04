@@ -37,7 +37,7 @@ function removeTODO() {
     log(completedTodo);
     todoList.innerHTML = "";
     completedTodo.forEach((item) => {
-        drawTodo(item.input, item.status);
+        drawTodo(item.id, item.input, item.status);
     });
     todos = completedTodo;
     addTODOtoLS(todos);
