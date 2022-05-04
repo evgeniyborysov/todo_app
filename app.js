@@ -231,6 +231,7 @@ window.onload = function () {
     if (localStorage.getItem("theme") === "dark") {
         mainPage.classList.add("dark");
     }
+    showFilterBlock();
 };
 
 function mobileView(width) {
