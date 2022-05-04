@@ -235,6 +235,10 @@ main {
     cursor: pointer;
 }
 
+.filter-inner input[type="radio"]:checked + label {
+    color: hsl(220, 98%, 61%);
+}
+
 .filter-inner label:nth-child(4) {
     margin: 0 20px;
 }
