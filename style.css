@@ -184,8 +184,6 @@ main {
 
 .text {
     font-size: 16px;
-    /* margin-right: 10px;
-    margin-top: 6px; */
     margin: 6px 10px 0 0;
 }
 
@@ -212,7 +210,6 @@ main {
     justify-content: space-between;
     align-items: center;
     height: 50px;
-    /* border: 1px solid brown; */
     padding: 10px;
     font-size: 16px;
     color: var(--text-color);
@@ -223,11 +220,14 @@ main {
 
 .filter {
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .filter-inner {
     flex: 1 0 auto;
-    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .filter-inner label {
@@ -237,10 +237,6 @@ main {
 
 .filter-inner input[type="radio"]:checked + label {
     color: hsl(220, 98%, 61%);
-}
-
-.filter-inner label:nth-child(4) {
-    margin: 0 20px;
 }
 
 .radio {
@@ -282,10 +278,7 @@ main {
         font-size: 13px;
     }
     .filter-inner {
-        /* display: flex; */
-        /* justify-content: space-between;
-        align-items: center; */
-        text-align: center;
+        justify-content: space-evenly;
         padding: 10px;
         font-size: 16px;
         color: var(--text-color);
